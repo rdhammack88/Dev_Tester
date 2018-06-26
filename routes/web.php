@@ -11,6 +11,29 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'PagesController@index');
+
+Route::get('/admin-login', 'PagesController@adminLogin');
+
+Route::get('/admin-register', 'PagesController@adminRegister');
+
+Route::resource('/quiz-choice', 'QuizChoicesController'); //PagesController@quizChoice
+
+Route::get('/ajax/{route}', 'AjaxController@questionCount');
+
+// Auth::routes();
+Route::get('/question', 'QuizChoicesController@showQuestion');
+Route::post('/question', 'QuizChoicesController@showQuestion');
+// Route::post('/question/{category}', 'QuizChoicesController@showQuestion'); //'PagesController@question');
+
+// /questions
+
+// Route::get('/question-count', 'QuestionsController@index');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

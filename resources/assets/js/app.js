@@ -7,16 +7,59 @@
 
 require('./bootstrap');
 
-window.Vue = require('vue');
+// window.Vue = require('vue');
+//
+// /**
+//  * Next, we will create a fresh Vue application instance and attach it to
+//  * the page. Then, you may begin adding components to this application
+//  * or customize the JavaScript scaffolding to fit your unique needs.
+//  */
+//
+// Vue.component('example', require('./components/Example.vue'));
+//
+// const app = new Vue({
+//     el: '#app'
+// });
 
-/**
- * Next, we will create a fresh Vue application instance and attach it to
- * the page. Then, you may begin adding components to this application
- * or customize the JavaScript scaffolding to fit your unique needs.
- */
 
-Vue.component('example', require('./components/Example.vue'));
+function getInfo(method, file, async) {
+	var xhr ;
 
-const app = new Vue({
-    el: '#app'
+	if(window.XMLHttpRequest) {
+		xhr = new XMLHttpRequest();
+	} else {
+		xhr = new ActiveXObject("Microsoft.XMLHTTP");
+	}
+
+	xhr.open(method, file, async);
+
+	xhr.onreadystatechange = function() {
+		if(this.readyState === 4 && this.status === 200) {
+			
+			var divisor = Math.floor(this.responseText / 5);
+
+			if(divisor !== 0) {
+				for(var i = 0; i <= divisor; i++) {
+
+					if(i === 0) {
+						document.getElementById('number_of_questions').innerHTML = '<option value="none" selected disabled>' + i * 5 + '</option>';
+					} else {
+						document.getElementById('number_of_questions').innerHTML += '<option value="' + i * 5 + '">' + i * 5 + '</option>';
+					}
+				}
+			} else {
+				document.getElementById('number_of_questions').innerHTML += '<option value="' + this.responseText + '">' + this.responseText + '</option>';
+			}
+		}
+	}
+	xhr.send();
+}
+
+document.querySelector('select[name="category"]').addEventListener('change', function() {
+    var data = getInfo('get', '/ajax/' + this.value, true);
+    document.getElementById('time').innerText = '0 Minutes';
+});
+document.querySelector('select[name="number_of_questions"]').addEventListener('change', function() {
+	var totalTestTime = this.value;
+	document.getElementById('time').innerText = (totalTestTime/2) + " Minutes";
 });
