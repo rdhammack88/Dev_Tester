@@ -22,8 +22,10 @@ Route::resource('/quiz-choice', 'QuizChoicesController'); //PagesController@quiz
 Route::get('/ajax/{route}', 'AjaxController@questionCount');
 
 // Auth::routes();
-Route::get('/question', 'QuizChoicesController@showQuestion');
-Route::post('/question', 'QuizChoicesController@showQuestion');
+Route::get('/question', 'QuestionsController@showQuestion');
+Route::post('/question', 'QuestionsController@showQuestion');
+Route::post('/question/{category}/{num}', 'QuestionsController@returnTest');
+
 // Route::post('/question/{category}', 'QuizChoicesController@showQuestion'); //'PagesController@question');
 
 // /questions

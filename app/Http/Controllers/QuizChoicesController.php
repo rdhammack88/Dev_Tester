@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\QuizChoice;
-use App\Question;
+// use App\Question;
 use DB;
 
 class QuizChoicesController extends Controller
@@ -37,19 +37,20 @@ class QuizChoicesController extends Controller
         return view('pages/choice')->with('choices', $choices);//->with('error', $error);
     }
 
-    public function showQuestion()
-    {
-        //
-
-        if(isset($_POST['category']) && $_POST['category'] !== 'none') {
-            $category = $_POST['category'];
-        }
-        if(!isset($_POST['category'])
-            || !isset($_POST['number_of_questions'])
-            || $_POST['category'] === 'none') {
-                $error = 'Please fill out all fields';
-                return redirect('/quiz-choice')->with('error', $error);
-        }
-        return Question::showQuestion($category);
-    }
+    // public function showQuestion()
+    // {
+    //     //
+    //
+    //     if(isset($_POST['category']) && $_POST['category'] !== 'none') {
+    //         $category = $_POST['category'];
+    //         $number_of_questions = $_POST['number_of_questions'];
+    //     }
+    //     if(!isset($_POST['category'])
+    //         || !isset($_POST['number_of_questions'])
+    //         || $_POST['category'] === 'none') {
+    //             $error = 'Please fill out all fields';
+    //             return redirect('/quiz-choice')->with('error', $error);
+    //     }
+    //     return Question::showQuestion($category, $number_of_questions);
+    // }
 }
