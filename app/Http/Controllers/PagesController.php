@@ -3,12 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class PagesController extends Controller
 {
     // Return Home Page View
     public function index() {
         $title = 'Dev Tester';
+        Session::forget('category');
         return view('pages/index')->with('title', $title);
     }
 

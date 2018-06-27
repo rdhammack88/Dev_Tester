@@ -3,13 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+// use Illuminate\Session\SessionManager;
+// use Illuminate\Session\SessionServiceProvider;
+use Illuminate\Support\Facades\Session;
 use App\Question;
 
 class QuestionsController extends Controller
 {
 
-    public function __construct()
-    {
+    public function __construct() {
         // $this->middleware('auth', ['except' => ['index', 'quiz-choice', 'question']]);
     }
 
@@ -18,9 +20,15 @@ class QuestionsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        echo 'Working in Question Model and Controller';
+    public function index($category = null, $num = null) {
+        // echo 'Working in Question Model and Controller';
+
+        $courses = array('PHP', 'CSS', 'HTML', 'SQL', 'JAVASCRIPT', 'JQUERY', 'BOOTSTRAP', 'SASS');
+        if(in_array($category, $courses)) {
+            return $this->returnTest($category, $num);
+        }
+
+
         //
         // $Question = new Question;
         // $questions = $Question->questionCount();
@@ -32,8 +40,7 @@ class QuestionsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
+    public function create() {
         //
     }
 
@@ -43,8 +50,7 @@ class QuestionsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
+    public function store(Request $request) {
         //
     }
 
@@ -54,8 +60,7 @@ class QuestionsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show()
-    {
+    public function show() {
         //
 
 
@@ -73,8 +78,7 @@ class QuestionsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
+    public function edit($id) {
         //
     }
 
@@ -85,8 +89,7 @@ class QuestionsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
+    public function update(Request $request, $id) {
         //
     }
 
@@ -96,18 +99,24 @@ class QuestionsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
+    public function destroy($id) {
         //
     }
 
-    public function showQuestion()
-    {
+    public function showQuestion($cat, $num, Request $request) {
         //
 
+        if(isset($_POST['quit'])) {
+            return redirect('/quiz-choice');
+        }
+
+        // $num++;
         if(isset($_POST['category']) && $_POST['category'] !== 'none') {
             $category = $_POST['category'];
             $number_of_questions = $_POST['number_of_questions'];
+            $request->session()->put('category', $category);
+            // Session::put('category', $category);
+            // session(['category' => $category]);
         }
         if(!isset($_POST['category'])
             || !isset($_POST['number_of_questions'])
@@ -115,6 +124,18 @@ class QuestionsController extends Controller
                 $error = 'Please fill out all fields';
                 return redirect('/quiz-choice')->with('error', $error);
         }
-        return Question::showQuestion($category, $number_of_questions);
+        return Question::showQuestion($category, $number_of_questions, $num++);
+    }
+
+    public function returnTest($category, $number) {
+
+        if(isset($_POST['category']) && $_POST['category'] !== 'none') {
+            $category = $_POST['category'];
+        }
+
+        if(isset($_GET['category']) && $_GET['category'] !== 'none') {
+            $category = $_GET['category'];
+        }
+        return redirect("/question/$category/1");
     }
 }

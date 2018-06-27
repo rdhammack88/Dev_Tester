@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 use App\QuizChoice;
 // use App\Question;
 use DB;
@@ -31,7 +32,9 @@ class QuizChoicesController extends Controller
         // $choices = QuizChoice::select('question_category')->get();
         //
 
-        $error = '';
+        // $error = '';
+
+        Session::forget('category');
         $quizChoice = new QuizChoice;
         $choices = $quizChoice->showQuizChoice();
         return view('pages/choice')->with('choices', $choices);//->with('error', $error);

@@ -10,8 +10,11 @@ use App\Question;
 class AjaxController extends Controller
 {
 
-    public function index() {
-        echo 'Working from AjaxController';
+    public function index($type, $request) {
+        // echo 'Working from AjaxController';
+        if($type == 'count'){
+            return $this->questionCount($request);
+        }
     }
 
     //
