@@ -30,10 +30,10 @@
 
     <main class="questionPage">
 		<div class="container">
-			<form method="POST" action="/question">
+			<form method="post" action="/question/{{ $question['question_category'] }}/{{ $question_number + 1 }}">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
 				<div class="question">
-					<p class="current">Question <?php// echo $number; ?> of {{ $question_count }}</p>
+					<p class="current">Question {{ $question_number }} of {{ $question_count }}</p>
 
 					<p>
                         <span id="question_number">{{ $question_number . '.' }}</span>
@@ -60,8 +60,15 @@
 				</div>
 
 				<div class="submission">
-					<input type="submit" name="submit" value="Next" id="submitAnswer">
+                    @if ($question_number >= $question_count)
+                        <input type="submit" name="submit" value="Submit Test" id="submitAnswer">
+                    @else
+                        <input type="submit" name="submit" value="Next" id="submitAnswer">
+                    @endif
+
 					<input type="submit" name="quit" value="Quit">
+                    <input type="hidden" name="category" value="{{ $question['question_category'] }}">
+                    <input type="hidden" name="number_of_questions" value="{{ $question_count }}">
 					<input type="hidden" name="number" value="<?php //echo $number; ?>">
 					<input type="hidden" name="questionNumber" value="<?php //echo $question_number; ?>">
 				</div>

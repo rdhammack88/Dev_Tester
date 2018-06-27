@@ -35,7 +35,7 @@ function getInfo(method, file, async) {
 
 	xhr.onreadystatechange = function() {
 		if(this.readyState === 4 && this.status === 200) {
-			
+
 			var divisor = Math.floor(this.responseText / 5);
 
 			if(divisor !== 0) {
@@ -50,14 +50,18 @@ function getInfo(method, file, async) {
 			} else {
 				document.getElementById('number_of_questions').innerHTML += '<option value="' + this.responseText + '">' + this.responseText + '</option>';
 			}
+			return this.responseText;
 		}
 	}
 	xhr.send();
 }
 
 document.querySelector('select[name="category"]').addEventListener('change', function() {
-    var data = getInfo('get', '/ajax/' + this.value, true);
+    var question_category = this.value;
+	getInfo('get', '/ajax/count/' + this.value, true);
     document.getElementById('time').innerText = '0 Minutes';
+	// console.log(data);
+	document.getElementById('choiceForm').action = '/question/' + this.value + '/1';
 });
 document.querySelector('select[name="number_of_questions"]').addEventListener('change', function() {
 	var totalTestTime = this.value;

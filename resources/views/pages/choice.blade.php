@@ -20,7 +20,9 @@
             {{-- {{ $choices }} --}}
 
 <?php //echo $_SERVER['PHP_SELF'] . '/' . $_POST['test_category']; ?>
-        	<form action="{{ action('QuestionsController@showQuestion') }}" method="post"> 
+
+            {{-- {{ action('QuestionsController@returnTest') }} --}}
+        	<form action="" method="post" id="choiceForm">
                 {{-- /question --}}
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
         		<label for="category">Test Category:</label>
