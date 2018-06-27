@@ -19,9 +19,9 @@
             <h3>Choose your test type</h3>
             {{-- {{ $choices }} --}}
 
-
 <?php //echo $_SERVER['PHP_SELF'] . '/' . $_POST['test_category']; ?>
-        	<form action="/question" method="post">
+        	<form action="{{ action('QuestionsController@showQuestion') }}" method="post"> 
+                {{-- /question --}}
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
         		<label for="category">Test Category:</label>
         		<select name="category" id="category" required>

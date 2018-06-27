@@ -100,4 +100,21 @@ class QuestionsController extends Controller
     {
         //
     }
+
+    public function showQuestion()
+    {
+        //
+
+        if(isset($_POST['category']) && $_POST['category'] !== 'none') {
+            $category = $_POST['category'];
+            $number_of_questions = $_POST['number_of_questions'];
+        }
+        if(!isset($_POST['category'])
+            || !isset($_POST['number_of_questions'])
+            || $_POST['category'] === 'none') {
+                $error = 'Please fill out all fields';
+                return redirect('/quiz-choice')->with('error', $error);
+        }
+        return Question::showQuestion($category, $number_of_questions);
+    }
 }
