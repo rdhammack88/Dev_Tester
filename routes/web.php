@@ -19,12 +19,12 @@ Route::get('/admin-register', 'PagesController@adminRegister');
 
 Route::resource('/quiz-choice', 'QuizChoicesController'); //PagesController@quizChoice
 
-Route::get('/ajax/{route}', 'AjaxController@questionCount');
+Route::get('/ajax/{count}/{route}', 'AjaxController@index');
 
 // Auth::routes();
 Route::get('/question', 'QuestionsController@showQuestion');
 Route::post('/question', 'QuestionsController@showQuestion');
-Route::post('/question/{category}/{num}', 'QuestionsController@returnTest');
+Route::post('/question/{category}/{num}', 'QuestionsController@showQuestion');
 
 // Route::post('/question/{category}', 'QuizChoicesController@showQuestion'); //'PagesController@question');
 
