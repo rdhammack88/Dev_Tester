@@ -9248,7 +9248,9 @@ main.questionPage .submission {
   border-radius: 0 0 10px 10px;
 }
 
-main.questionPage .submission input[name="submit"] {
+main.questionPage .submission input[name="submit"],
+main.questionPage .submission input[name="nextQuestion"],
+main.questionPage .submission input[name="submitQuiz"] {
   background-color: #548c27;
   /* Green */
   color: #eee8d6;
@@ -9262,6 +9264,8 @@ main.questionPage .submission input[name="quit"] {
 }
 
 main.questionPage .submission input[name="submit"],
+main.questionPage .submission input[name="nextQuestion"],
+main.questionPage .submission input[name="submitQuiz"],
 main.questionPage .submission input[name="quit"] {
   margin: 3%;
   width: 37.5%;
@@ -9279,18 +9283,22 @@ main.questionPage .submission input[name="quit"] {
 
 @media (min-width: 768px) {
   main.questionPage .submission input[name="submit"],
+  main.questionPage .submission input[name="nextQuestion"],
+  main.questionPage .submission input[name="submitQuiz"],
   main.questionPage .submission input[name="quit"] {
     opacity: .9;
   }
 
   main.questionPage .submission input[name="submit"]:hover,
+  main.questionPage .submission input[name="nextQuestion"]:hover,
+  main.questionPage .submission input[name="submitQuiz"]:hover,
   main.questionPage .submission input[name="quit"]:hover {
     opacity: 1;
     border-radius: 10px;
   }
 }
 
-/* 
+/*
  * Final Results Page
 */
 
@@ -9419,7 +9427,7 @@ main#finalePage .correct_answer .resource a {
   margin-top: 0;
 }
 
-/* 
+/*
  * Admin Login Page
 */
 
@@ -9529,7 +9537,7 @@ main#adminSignup > p span > a:hover {
   text-decoration: underline;
 }
 
-/* 
+/*
  * Admin Page
 */
 
@@ -9583,7 +9591,7 @@ main#adminPage .no-user-questions {
   margin: 120px auto 0;
 }
 
-/* 
+/*
  * Add Question Page
 */
 
