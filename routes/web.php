@@ -20,11 +20,15 @@ Route::get('/admin-register', 'PagesController@adminRegister');
 Route::resource('/quiz-choice', 'QuizChoicesController'); //PagesController@quizChoice
 
 Route::get('/ajax/{count}/{route}', 'AjaxController@index');
+// Route::get('/ajax/admin/login', 'AjaxController@loginSwitch');
+// Route::get('/ajax/admin/register', 'AjaxController@registerSwitch');
 
 // Auth::routes();
 Route::get('/question', 'QuestionsController@showQuestion');
 Route::post('/question', 'QuestionsController@showQuestion');
 Route::post('/question/{category}/{num}', 'QuestionsController@showQuestion');
+
+Route::get('/quizFinal', 'QuestionsController@quizComplete');
 
 // Route::post('/question/{category}', 'QuizChoicesController@showQuestion'); //'PagesController@question');
 
