@@ -21,6 +21,6 @@
     		</fieldset>
     	</form>
 
-    	<p>Have an account? &nbsp;<span><a href="/admin-login"> Login!</a></span></p>
+    	<p>Have an account? &nbsp;<span><a href="/admin-login" id="login-switch"> Login!</a></span></p>
     </main>
 @endsection

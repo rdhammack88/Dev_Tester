@@ -22,6 +22,6 @@
     		</fieldset>
     	</form>
 
-    	<p>Don't have an account? <span><a href="/admin-register">Signup!</a></span></p>
+    	<p>Don't have an account? <span><a href="/admin-register" id="register-switch">Signup!</a></span></p>
     </main>
 @endsection

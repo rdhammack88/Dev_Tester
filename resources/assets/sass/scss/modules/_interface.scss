@@ -17,7 +17,7 @@ main.wrapper {
 		height: 500px;
 		margin-bottom: 250px;
 	}
-	
+
 	> .container {
 		width: 100%;
 		max-height: 400px;
@@ -34,11 +34,11 @@ main.wrapper {
 			height: 300px; //85vh;
 			float: left;
 		}
-		
+
 		> p:nth-of-type(1) {
 			width: 90%;
 			margin: 0 auto 20px;
-			
+
 			@include break(768px) {
 				width: 70%;
 				margin: 0 auto 40px;
@@ -59,7 +59,7 @@ main.wrapper {
 				@extend %hoverEffect;
 
 				@include break(768px) {
-					font-size: 1.8em;	
+					font-size: 1.8em;
 				}
 			}
 		}
@@ -68,7 +68,7 @@ main.wrapper {
 			text-align: center;
 			margin-top: 5px;
 //			-webkit-transform: scale(1.0);
-//			
+//
 //			&:hover {
 //				-webkit-transform: scale(1.0);
 //			}
@@ -83,13 +83,13 @@ main.wrapper {
 				@extend %homePageButtons;
 
 				@include break(768px) {
-					font-size: 1.8em;	
+					font-size: 1.8em;
 				}
-				
+
 				@extend %hoverEffect;
 			}
 		}
-		
+
 		form p {
 			text-align: center;
 			margin-top: 25px;
@@ -104,9 +104,9 @@ main.wrapper {
 				@extend %homePageButtons;
 
 				@include break(768px) {
-					font-size: 1.8em;	
+					font-size: 1.8em;
 				}
-				
+
 				@extend %hoverEffect;
 			}
 		}
@@ -121,16 +121,16 @@ main.testChoice {
 	max-width: 600px;
 	font-size: .8em;
 	margin: 105px auto;
-	
+
 	@include break(768px) {
 		height: 500px;
 		margin: 140px auto;
 	}
-	
+
 	form select, form span {
 		float: right;
 	}
-	
+
 	button.start {
 		width: 40%;
 		background-color: $green; /* Green */
@@ -146,7 +146,7 @@ main.testChoice {
 		-ms-transition: all .2s ease-in;
 		-o-transition: all .2s ease-in;
 		transition: all .2s ease-in;
-		
+
 		&:hover {
 			border-radius: 10px;
 		}
@@ -161,27 +161,27 @@ main.questionPage {
 	height: 100%;
 	margin: 35px 0;
 	font-size: .8em;
-	
+
 	.container {
 		width: 90%;
 		margin: 30px auto;
-		
+
 		@include break(768px) {
 			margin: 130px auto;
 		}
 	}
-	
+
 	form {
 		width: 100%;
 		//height: 600px;
 		max-width: 800px;
 		margin: 0 auto;
-		
+
 		@include break(768px) {
 			//height: 700px;
 		}
 	}
-	
+
 	.question,
 	.answers,
 	.submission {
@@ -196,7 +196,7 @@ main.questionPage {
 		height: 20%;//150px;
 		min-height: 100px;
 		border-radius: 10px 10px 0 0;
-		
+
 		@include break(768px) {
 			height: 25%;//200px;
 		}
@@ -207,7 +207,7 @@ main.questionPage {
 			padding-right: 3%;
 			margin-bottom: 4%;
 		}
-		
+
 		> p:nth-child(2) {
 			//padding-left: 60px;
 			text-align: center;
@@ -217,11 +217,11 @@ main.questionPage {
 				family: $font-main;
 				weight: 100;
 			}
-			
+
 			@include break(768px) {
 				font-size: 1.2em;
 			}
-			
+
 			> #question_number {
 				font: {
 					size: .9em;
@@ -234,7 +234,7 @@ main.questionPage {
 	.answers {
 		height: 55%;//200px;
 		min-height: 175px;
-		
+
 		.choices li {
 			font: {
 				family: $philosopher;
@@ -244,7 +244,7 @@ main.questionPage {
 			line-height: 1.7em;
 			letter-spacing: 2px;
 			padding: 3px;
-			
+
 			@include break(768px) {
 				font-size: 1em;
 			}
@@ -255,19 +255,23 @@ main.questionPage {
 		height: 15%;//80px;
 		min-height: 80px;
 		border-radius: 0 0 10px 10px;
-		
-		input[name="submit"] {
+
+		input[name="submit"],
+		input[name="nextQuestion"],
+		input[name="submitQuiz"] {
 			background-color: $green; /* Green */
 			color: $offwhite; // $orange;
 		}
-		
+
 		input[name="quit"] {
 			background-color: $red; /* red */
 			color: $offwhite; //$yellow;
 			float: right;
 		}
-		
-		input[name="submit"], 
+
+		input[name="submit"],
+		input[name="nextQuestion"],
+		input[name="submitQuiz"],
 		input[name="quit"] {
 			margin: 3%; //20px
 			width: ((100% - ((2 - 1) * 25)) / 2);
@@ -284,7 +288,7 @@ main.questionPage {
 			-ms-transition: all .2s ease-in;
 			-o-transition: all .2s ease-in;
 			transition: all .2s ease-in;
-			
+
 			@include break(768px) {
 				opacity: .9;
 				&:hover {
@@ -294,18 +298,18 @@ main.questionPage {
 			}
 		}
 	}
-	
+
 	//width: ((100% - (($qty - 1) * $margin)) / $qty);
-	
+
 }
 
-/* 
+/*
  * Final Results Page
 */
 main#finalePage {
 	font-size: 1rem;
 	margin-bottom: 4%;
-	
+
 	> .container {
 		width: 90%;
 		//height: 1200px;
@@ -313,41 +317,41 @@ main#finalePage {
 		border: 1px dashed #000;
 		border-radius: 5px;
 		padding: 2%;
-		
+
 		@include break(1400px) {
 			width: 50%;
 		}
-		
+
 		> a.retake {
 			background: $blue;
 			font-size: 1em;
 			@extend %homePageButtons;
 			@extend %hoverEffect;
-			
+
 			@include break(768px) {
 				font-size: 1.3em;
 			}
 		}
 	}
-	
+
 	#finaleDetails {
 		padding: 20px;
 		border-bottom: 1px dashed #000;
 		font-size: 1.3rem;
 	}
-	
+
 	#container {
-		
+
 	}
-	
+
 	.wrapper {
 		//padding: 20px;
 //		height: 4000px;
-		
+
 		> ol#question_list {
 			padding-bottom: 50px;
-			
-//			.question_wrapper 
+
+//			.question_wrapper
 			li.question {
 //				height: 2em;
 				margin: {
@@ -356,12 +360,12 @@ main#finalePage {
 				}
 				font-size: 1.3rem;
 				padding: 2%;
-				
+
 				@include break(768px) {
 					font-size: 2rem;
 				}
 			}
-			
+
 //			.question_wrapper
 			.answer_list {
 				width: 80%;
@@ -370,16 +374,16 @@ main#finalePage {
 				list-style-type: lower-alpha;
 				font-size: 1.2rem;
 				padding-left: 0;
-				
+
 				@include break(768px) {
 					font-size: 1.6rem;
 				}
-				
+
 				> li {
 					word-wrap: break-word;
 				}
 			}
-			
+
 			> p {
 				margin: {
 					top: 4%;
@@ -388,15 +392,15 @@ main#finalePage {
 			}
 		}
 	}
-	
+
 	.correct {
 		color: $green;
 	}
-	
+
 	.wrong {
 		color: $red;
 	}
-	
+
 	.correct_answer,
 	.wrong_answer {
 		width: 80%;
@@ -405,33 +409,33 @@ main#finalePage {
 		border-radius: 10px;
 		padding: 4%;
 		margin: 2% auto;
-		
+
 		@include break(768px) {
 			font-size: 1.4rem;
 			padding: 10px;
 		}
 	}
-	
+
 	.wrong_answer {
 		background-color: $red;// nth($background-colors-list, 10);
 	}
-	
+
 	.correct_answer {
 		background-color: $darkblue; //nth($background-colors-list, 6);
 		color: $offwhite;
-		
+
 		h4 {
 			color: $blue;
 			margin-bottom: 0;
 		}
-		
+
 		.resource {
 			&:hover {
 				a {
-					color: opacify($red, 0.5);					
+					color: opacify($red, 0.5);
 				}
 			}
-			
+
 			a {
 				color: $yellow;
 				margin-top: 0;
@@ -440,7 +444,7 @@ main#finalePage {
 	}
 }
 
-/* 
+/*
  * Admin Login Page
 */
 main#adminLogin,
@@ -449,19 +453,19 @@ main#adminSignup {
 	width: 90%;
 	margin: 0 auto;
 	box-sizing: border-box;
-	
+
 	> form {
 		width: 50%;
 		min-width: 300px;
 		max-width: 420px;
 		margin: 120px auto 30px;
 		box-sizing: border-box;
-		
+
 		> fieldset {
 			width: 95%;
 			margin: 0 auto;
 			box-sizing: content-box;
-			
+
 			> p:last-child {
 				text-align: right;
 				padding: 0;
@@ -474,11 +478,11 @@ main#adminSignup {
 				}
 			}
 		}
-		
+
 		.input-group {
 			width: 100%;
 		}
-		
+
 		label {
 			display: block;
 			font-size: .9em;
@@ -486,7 +490,7 @@ main#adminSignup {
 			line-height: 1.8em;
 			margin-top: 3%;
 		}
-		
+
 		input {
 			display: block;
 			width: 100%;
@@ -497,13 +501,13 @@ main#adminSignup {
 			margin: 0;
 			box-sizing: border-box;
 		}
-		
+
 		p.text-error {
 			text-align: left;
 			margin: 0;
 			padding: 0;
 		}
-		
+
 //		@include break(1100px) {
 ////			> fieldset {
 ////				width: 100%;
@@ -518,7 +522,7 @@ main#adminSignup {
 ////					}
 ////				}
 ////			}
-//			
+//
 //			.input-group {
 //				height: 2em;
 	//			text-align: center;
@@ -556,24 +560,24 @@ main#adminSignup {
 //			}
 //		}
 	}
-	
+
 	> p {
 		text-align: center;
 		width: 85%;
 		margin: 0 auto;
 		font-size: .8em;
-		
+
 		@include break(768px) {
 			font-size: 1em;
 		}
-		
+
 		span {
 			padding: 15px;
-			
+
 			> a {
 				text-decoration: none;
 				color: $blue;
-			
+
 				&:hover {
 					text-decoration: underline;
 				}
@@ -582,19 +586,19 @@ main#adminSignup {
 	}
 }
 
-/* 
+/*
  * Admin Page
 */
 main#adminPage {
 //	height: 70vh;
-	
+
 	> p:first-of-type {
-		width: 75%; 
+		width: 75%;
 		text-align: right;
 		margin: 50px auto 10px;
 //		padding: 7px 3%;
 	}
-	
+
 	div.question_box {
 		width: 70%;
 		border: 1px dotted #000;
@@ -602,12 +606,12 @@ main#adminPage {
 		margin: 4% auto;
 		padding: 7px 3%;
 		position: relative;
-		
+
 		> p.question_number {
 			width: 75%;
 			display: inline-block;
 		}
-		
+
 		> p.edit-question {
 			width: 20%;
 			display: inline-block;
@@ -618,29 +622,29 @@ main#adminPage {
 			right: 0;
 		}
 	}
-	
+
 	form {
 		width: 80%;
 		text-align: center;
 		margin: 0 auto 50px;
 	}
-	
+
 	button[name=previous] {
 		margin-right: 30px;
 		@extend %adminPageButtons;
 	}
-	
+
 	button[name='next'] {
 		margin-left: 30px;
 		@extend %adminPageButtons;
 	}
-	
+
 	.no-user-questions {
 		width: 70%;
 		height: 70vh;
 		margin: 120px auto 0;
 	}
-	
+
 //	h3 {
 //		display: inline-block;
 //		width: 65%;
@@ -650,8 +654,8 @@ main#adminPage {
 //			bottom: 0;
 //			left: 0;
 //		}
-//	} 
-//	
+//	}
+//
 //	p {
 //		display: inline-block;
 //		width: 30%;
@@ -664,7 +668,7 @@ main#adminPage {
 //	}
 }
 
-/* 
+/*
  * Add Question Page
 */
 main.addPage {
@@ -676,30 +680,30 @@ main.addPage {
 	@include break(768px) {
 		height: 75vh;
 	}
-	
+
 	h2 {
 		color: $darkgreen;
 		margin-bottom: 0;
 	}
-	
+
 	.message {
 		color: $red;
 	}
-	
+
 	form {
 		width: 100%;
 		height: 100%;
 		max-height: 800px;
 		margin: 0 auto;
-				
+
 		p.hidden {
 			display: none;
 		}
-		
+
 		> p {
 			margin-top: 20px;
 		}
-		
+
 		> p:last-of-type {
 			margin-bottom: 50px;
 		}
@@ -727,7 +731,7 @@ main.addPage {
 			border-radius: 5px;
 			padding: 3px;
 			text-align: right;
-			
+
 
 			@include clearfix;
 
@@ -736,21 +740,21 @@ main.addPage {
 				float: right;
 			}
 		}
-		
+
 		input[type="text"] {
 			width: 100%;
 			@include break(768px) {
 				width: 50%;
 			}
 		}
-		
+
 		input[type="number"] {
 			width: 30%;
 			@include break(768px) {
-				
+
 			}
 		}
-		
+
 		input[name="submit"] {
 			background-color: $purple;
 			color: $offwhite;
@@ -764,7 +768,7 @@ main.addPage {
 		input[name="cancel"] {
 			background-color: $red;
 			color: $yellow;
-			
+
 			@include break(768px) {
 				float: left;
 			}
@@ -778,21 +782,21 @@ main.addPage {
 				text-align: center;
 				text-decoration: none;
 				font-size: 1em;
-			
-			
+
+
 			@include break(1000px) {
 				font-size: 1.2em;
 				padding: 15px 32px;
 			}
-			
+
 			&:hover {
 				opacity: .8;
 				font-size: 1.2em;
 				//padding: 15px 32px;
-				
+
 				@include break(1000px) {
 					font-size: 1.4em;
-				}	
+				}
 			}
 		}
 	}

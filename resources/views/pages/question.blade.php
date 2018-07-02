@@ -23,10 +23,11 @@
         <p>{{ $key . ' -> ' . $value['answers'] }}</p>
     @endforeach --}}
 
-    {{-- <br>
-    {{ $question_id }}
+    <br>
+    {{-- {{ $question_id }} --}}
     {{ $question['id'] }}
-    <br> --}}
+    <br>
+
 
     <main class="questionPage">
 		<div class="container">
@@ -50,7 +51,7 @@
                                 <input type="hidden" name="is_correct" value="{{ $answer['is_correct'] }}">
                                 <input type="radio" name="choice" value="{{ $answer['id'] }}" id="{{ 'answer' . $answer['id'] }}">
                                 &nbsp;&nbsp;
-                                <label for="{{ 'answer' . $answer['id'] }}">{{ $answer['answers'] }}</label>
+                                <label for="{{ 'answer' . $answer['id'] }}">{{ $answer['answers'] }} -- {{ $answer['id'] }}</label>
                             </li>
                         @endforeach
 
@@ -61,19 +62,57 @@
 
 				<div class="submission">
                     @if ($question_number >= $question_count)
-                        <input type="submit" name="submit" value="Submit Test" id="submitAnswer">
+                        <input type="submit" name="submitQuiz" value="Submit Test" id="submitAnswer">
                     @else
-                        <input type="submit" name="submit" value="Next" id="submitAnswer">
+                        <input type="submit" name="nextQuestion" value="Next" id="submitAnswer">
                     @endif
 
 					<input type="submit" name="quit" value="Quit">
                     <input type="hidden" name="category" value="{{ $question['question_category'] }}">
                     <input type="hidden" name="number_of_questions" value="{{ $question_count }}">
-					<input type="hidden" name="number" value="<?php //echo $number; ?>">
-					<input type="hidden" name="questionNumber" value="<?php //echo $question_number; ?>">
 				</div>
 			</form>
 		</div>
+
+
+
+            {{ $recent_choice }}
+            {{-- {{ session('user.answers') }} --}}
+
+            {{ print_r(Session::all()) }}
+            {{-- @foreach ($previous_questions as $question)
+                <p>{{ $question }}</p>
+            @endforeach --}}
+
+            {{-- @foreach ($user['answers'] as $user_answer)
+                <p>{{ $user_answer }}</p>
+            @endforeach --}}
+            {{-- {{ $previous_questions }} --}}
+<br><br><br><br><br>
+            @foreach (session('question.previous_questions') as $question)
+                <p>{{ $question }}</p>
+            @endforeach
+<br><br><br><br><br>
+            @foreach (session('question.correct_answers') as $correct_answers)
+                {{-- @foreach ($key as $correct_answers => $answer)
+                <p>{{ $answer }}</p> --}}
+                    <p>{{ $correct_answers }}</p>
+                {{-- @endforeach --}}
+            @endforeach
+<br><br><br><br><br>
+    @if(session('question.user_answers'))
+            @foreach (session('question.user_answers') as $user_answers)
+                <p>{{ $user_answers }}</p>
+            @endforeach
+        @endif
+
+        <br><br><br><br><br><br>
+        <p>Recenet Questions</p>
+        @foreach ($recent_questions as $recent_question)
+            {{ $recent_question }}
+        @endforeach
+
+            {{-- {{ session('previous_questions') }} --}}
 	</main>
 
 
