@@ -35,9 +35,17 @@ class QuizChoicesController extends Controller
         // $error = '';
 
         Session::forget('category');
+        Session::forget('question.user_answers');
+        Session::forget('question.previous_questions');
+        Session::forget('question.correct_answers');
+
+        // Session::put(csrf_token());
+        // if($_POST['number_of_questions']) {
         $quizChoice = new QuizChoice;
         $choices = $quizChoice->showQuizChoice();
         return view('pages/choice')->with('choices', $choices);//->with('error', $error);
+        // }
+
     }
 
     // public function showQuestion()

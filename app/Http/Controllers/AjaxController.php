@@ -6,11 +6,12 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Ajax;
 use App\Question;
+use App\Http\Controllers\PagesController;
 
 class AjaxController extends Controller
 {
 
-    public function index($type, $request) {
+    public function index($type, $request=null) {
         // echo 'Working from AjaxController';
         if($type == 'count'){
             return $this->questionCount($request);
@@ -40,5 +41,15 @@ class AjaxController extends Controller
 
         // $question_cat = $question_category->question_count($request);
         // return $question_cat;
+    }
+
+    public function loginSwitch() {
+        $page = new PagesController;
+        return $page->adminLogin();
+    }
+
+    public function registerSwitch() {
+        $page = new PagesController;
+        return $page->adminRegister();
     }
 }

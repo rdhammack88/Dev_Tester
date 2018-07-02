@@ -10,7 +10,11 @@ use App\Question;
 
 class QuestionsController extends Controller
 {
-
+    /**
+     *
+     *
+     *
+     */
     public function __construct() {
         // $this->middleware('auth', ['except' => ['index', 'quiz-choice', 'question']]);
     }
@@ -103,6 +107,11 @@ class QuestionsController extends Controller
         //
     }
 
+    /**
+     *
+     *
+     *
+     */
     public function showQuestion($cat, $num, Request $request) {
         //
 
@@ -110,12 +119,17 @@ class QuestionsController extends Controller
             return redirect('/quiz-choice');
         }
 
+        if(isset($_POST['submitQuiz'])) {
+            // return redirect('/quizFinal');
+            return $this->quizComplete();
+        }
+
         // $num++;
-        if(isset($_POST['category']) && $_POST['category'] !== 'none') {
+        if(isset($_POST['category']) && $_POST['category'] !== 'none' && isset($_POST['number_of_questions'])) {
             $category = $_POST['category'];
             $number_of_questions = $_POST['number_of_questions'];
-            $request->session()->put('category', $category);
-            // Session::put('category', $category);
+            // $request->session()->put('category', $category);
+            Session::put('category', $category);
             // session(['category' => $category]);
         }
         if(!isset($_POST['category'])
@@ -124,9 +138,38 @@ class QuestionsController extends Controller
                 $error = 'Please fill out all fields';
                 return redirect('/quiz-choice')->with('error', $error);
         }
+
+        // if(isset($_POST['choice'])) {
+        //     Session::put('user.answers');
+        //     Session::push('user.answers', $_POST['choice']);
+        // }
         return Question::showQuestion($category, $number_of_questions, $num++);
     }
 
+    /**
+     *
+     *
+     *
+     */
+     public function quizComplete() {
+         // echo 'Completed Quiz';
+         return view('pages/quizFinal');
+     }
+
+    /**
+     *
+     *
+     *
+     */
+     public function confirmChoice() {
+         // Session::push('user_answers', $_POST['choice']);
+     }
+
+     /**
+      *
+      *
+      *
+      */
     public function returnTest($category, $number) {
 
         if(isset($_POST['category']) && $_POST['category'] !== 'none') {
@@ -138,4 +181,10 @@ class QuestionsController extends Controller
         }
         return redirect("/question/$category/1");
     }
+
+    /**
+     *
+     *
+     *
+     */
 }

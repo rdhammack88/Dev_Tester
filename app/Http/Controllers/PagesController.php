@@ -11,6 +11,9 @@ class PagesController extends Controller
     public function index() {
         $title = 'Dev Tester';
         Session::forget('category');
+        Session::forget('question.user_answers');
+        Session::forget('question.previous_questions');
+        Session::forget('question.correct_answers');
         return view('pages/index')->with('title', $title);
     }
 
