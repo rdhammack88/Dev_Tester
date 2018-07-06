@@ -23,10 +23,10 @@
         <p>{{ $key . ' -> ' . $value['answers'] }}</p>
     @endforeach --}}
 
-    <br>
-    {{-- {{ $question_id }} --}}
+    {{-- <br>
+    {{ $question_id }}
     {{ $question['id'] }}
-    <br>
+    <br> --}}
 
 
     <main class="questionPage">
@@ -38,7 +38,6 @@
 
 					<p>
                         <span id="question_number">{{ $question_number . '.' }}</span>
-                        <?php // echo  html_entity_decode(htmlspecialchars_decode($question['question'])); ?>
                         {{ $question['question'] }}
                     </p>
 				</div>

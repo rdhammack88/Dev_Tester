@@ -15,8 +15,9 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
+
+    @include('includes/navbar')
     <div id="app">
-        @include('includes/navbar')
         @php
             // echo date('m/d/Y h:i:s a', time())
         @endphp

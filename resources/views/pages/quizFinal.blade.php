@@ -132,10 +132,6 @@
 </ol>
 </div>
 
-	<p><?php  ?></p>
-	<p><?php  ?></p>
-	   <?php ?>
-
 		<a href="index.php" class="retake">Take Quiz Again</a>
 <!--
 		<br>
