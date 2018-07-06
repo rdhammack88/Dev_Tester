@@ -8,6 +8,11 @@
                 <div class="panel-heading">Login</div>
 
                 <div class="panel-body">
+                    @if (session('status'))
+                        <div class="alert alert-success">
+                            {{ session('status') }}
+                        </div>
+                    @endif
                     <form class="form-horizontal" method="POST" action="{{ route('login') }}">
                         {{ csrf_field() }}
 
@@ -63,7 +68,7 @@
                     </form>
                 </div>
             </div>
-            <p class="text-center">Don't have an account? <span><a href="/admin-register" id="register-switch">Signup!</a></span></p>
+            <p class="text-center">Don't have an account? &nbsp;<span><a href="{{ route('register') }}" id="register-switch">Signup!</a></span></p>
         </div>
     </div>
 </div>

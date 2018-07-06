@@ -12,7 +12,7 @@
 
 			<br/>
 			<p><a href="/quiz-choice" role="button">Get Started</a></p>
-			<p><a href="/admin-login" role="button">Admin</a></p>
+			{{-- <p><a href="/admin-login" role="button">Admin</a></p> --}}
 		</div>
 	</main>
 @endsection

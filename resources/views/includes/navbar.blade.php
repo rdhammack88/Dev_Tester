@@ -13,7 +13,7 @@
 // $title = 'php';
 //&& Session::get('category') != ''
 
-if(null !== Session::get('category') ) {
+if(Session::get('category') !== null) {
 	$session_category = Session::get('category');
 	$title = ucfirst($session_category) . ' Tester'; //Session::get('category'); //strtoupper($session_category) + ' Tester';
 } else {
@@ -24,7 +24,7 @@ if(null !== Session::get('category') ) {
 ?>
 
 <nav class="navbar navbar-inverse navbar-fixed-top">
-	<div class="container">
+	<div class="container-fluid">
 		<div class="navbar-header">
 			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
 				<span class="sr-only">Toggle navigation</span>
