@@ -71,6 +71,7 @@
                     </form>
                 </div>
             </div>
+            <p class="text-center">Have an account? &nbsp;<span><a href="/admin-login" id="login-switch"> Login!</a></span></p>
         </div>
     </div>
 </div>

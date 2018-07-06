@@ -63,6 +63,7 @@
                     </form>
                 </div>
             </div>
+            <p class="text-center">Don't have an account? <span><a href="/admin-register" id="register-switch">Signup!</a></span></p>
         </div>
     </div>
 </div>
