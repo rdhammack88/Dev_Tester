@@ -11,11 +11,13 @@
 |
 */
 
+Auth::routes();
 Route::get('/', 'PagesController@index');
 
 Route::get('/admin-login', 'PagesController@adminLogin');
-
 Route::get('/admin-register', 'PagesController@adminRegister');
+Route::get('/admin/dashboard', 'DashboardController@index');
+
 
 Route::resource('/quiz-choice', 'QuizChoicesController'); //PagesController@quizChoice
 
@@ -36,10 +38,9 @@ Route::get('/quizFinal', 'QuestionsController@quizComplete');
 
 // Route::get('/question-count', 'QuestionsController@index');
 
-Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+// Route::get('/home', 'HomeController@index')->name('home');
 
-Auth::routes();
+// Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+// Route::get('/home', 'HomeController@index')->name('home');
