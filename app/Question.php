@@ -102,5 +102,9 @@ class Question extends Model
     }
 
 
+    public function getAllQuestions($user_id) {
+        $questions = Question::all($user_id);
+        return $questions;
+    }
 
 }
