@@ -15,8 +15,8 @@ Auth::routes();
 Route::get('/', 'PagesController@index');
 Route::get('/about', 'PagesController@about');
 
-Route::get('/admin-login', 'PagesController@adminLogin');
-Route::get('/admin-register', 'PagesController@adminRegister');
+// Route::get('/admin-login', 'PagesController@adminLogin');
+// Route::get('/admin-register', 'PagesController@adminRegister');
 Route::get('/admin/dashboard', 'DashboardController@index');
 
 
