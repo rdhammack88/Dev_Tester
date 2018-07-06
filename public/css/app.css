@@ -8986,6 +8986,10 @@ main#adminPage button[name='next'] {
   text-decoration: none;
 }
 
+#app {
+  margin-top: 100px;
+}
+
 /*
  * Main Content Styles
 */
