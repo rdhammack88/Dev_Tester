@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class HomeController extends Controller
+use App\Dashboard;
+
+class DashboardController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -23,6 +25,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('/pages/admin/dashboard');
+        // return view('/pages/admin/dashboard');
+        return Dashboard::index();
     }
 }
