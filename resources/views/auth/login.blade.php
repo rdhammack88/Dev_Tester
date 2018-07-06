@@ -68,7 +68,7 @@
                     </form>
                 </div>
             </div>
-            <p class="text-center">Don't have an account? &nbsp;<span><a href="/register" id="register-switch">Signup!</a></span></p>
+            <p class="text-center">Don't have an account? &nbsp;<span><a href="{{ route('register') }}" id="register-switch">Signup!</a></span></p>
         </div>
     </div>
 </div>
