@@ -103,8 +103,93 @@ class Question extends Model
 
 
     public function getAllQuestions($user_id) {
-        $questions = Question::all($user_id);
-        return $questions;
+        $questions = Question::where('added_by', '=', $user_id)->paginate(10);
+
+        if($questions) {
+            return $questions;
+        } else {
+            return 'You do not have any questions';
+        }
+    }
+
+    public function addQuestion($request) {
+        $user_id = auth()->user()->id;
+        $question = new Question;
+        $question->question = $request->input('question');
+        $question->question_category = $request->input('question_category');
+        $question->added_by = $user_id; // auth()->user()->id;
+        $question->save();
+
+
+        ////////////////////////
+
+        // return dd($question->id);
+
+        // $answer->question_number = $request
+        // foreach ($variable as $key => $value) {
+        //     // code...
+        // }
+
+        // return auth()->user()->id;
+
+        // return 'Record inserted';
+        /////////////////////////
+        $last_inserted_id = $question->id; //DB::table()->insertGetIddd($question->id);
+        // return $last_inserted_id;
+        // $answer
+        for ($i=1; $i < 6; $i++) {
+            $answer = new Answer;
+            if ($request->input('choice#'.$i) != '') {
+                $answer->answers = $request->input('choice#'.$i);
+            } else {
+                break;
+            }
+            $answer->question_number = $last_inserted_id;//dd($question->id);
+            $answer->added_by = $user_id; // auth()->user()->id;
+            if ($i == $request->input('correct_choice')) {
+                $answer->is_correct = 1;
+                $answer->correct_explanation = $request->input('correct_explanation');
+                $answer->resources = $request->input('resources');
+            } else {
+                $answer->is_correct = 0;
+            }
+
+            $answer->save();
+        }
+
+        return redirect('/admin/dashboard');
+    }
+
+    public function editQuestion($id) {
+        $question = new Question;
+        $result = $question->find($id);//where('id', '=', $id)->get();
+
+        return $result;
+        // $question_info = array();
+        // $question_info['question_id'] = '';
+    }
+
+    public function updateQuestion($request, $id) {
+        $question = Question::find($id);
+        $answer = Answer::where('question_number', '=', $id);
+        $question->question = $request->input('question');
+        $question->question_category = $request->input('question_category');
+        $question->added_by = auth()->user()->id;
+        $question->save();
+        // $answer->added_by = $request->input('choice');
+        // $answer-> = $request->input('correct_choice');
+        // $answer-> = $request->input('correct_reason');
+
+
+        // question
+        // question_category
+        // choice
+        // correct_choice
+        // correct_reason
+
+
+        // return $question;
+        return redirect('/admin/dashboard');
     }
 
 }
