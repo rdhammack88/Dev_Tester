@@ -28,4 +28,14 @@ class DashboardController extends Controller
         // return view('/pages/admin/dashboard');
         return Dashboard::index();
     }
+
+    public function addQuestion() {
+        $dashboard = new Dashboard;
+        return $dashboard->addQuestion();
+    }
+
+    public function editQuestion($id) {
+        $dashboard = new Dashboard;
+        return $dashboard->editQuestion($id);
+    }
 }

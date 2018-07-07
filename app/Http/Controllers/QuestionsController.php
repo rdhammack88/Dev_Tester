@@ -46,6 +46,9 @@ class QuestionsController extends Controller
      */
     public function create() {
         //
+        // $dashboard = new Dashboard;
+        // return $dashboard->addQuestion();
+        return view('pages/admin/add');
     }
 
     /**
@@ -56,6 +59,17 @@ class QuestionsController extends Controller
      */
     public function store(Request $request) {
         //
+        $question = new Question;
+
+        $this->validate($request, [
+            'question' => 'required',
+            'question_category' => 'required',
+            'choice#1' => 'required',
+            'choice#2' => 'required',
+            'correct_choice' => 'required'
+        ]);
+
+        return $question->addQuestion($request);
     }
 
     /**
@@ -95,6 +109,17 @@ class QuestionsController extends Controller
      */
     public function update(Request $request, $id) {
         //
+        $question = new Question;
+
+        $this->validate($request, [
+            'question' => 'required',
+            'question_category' => 'required',
+            'choice#1' => 'required',
+            'choice#2' => 'required',
+            'correct_choice' => 'required'
+        ]);
+
+        return $question->updateQuestion($request, $id);
     }
 
     /**

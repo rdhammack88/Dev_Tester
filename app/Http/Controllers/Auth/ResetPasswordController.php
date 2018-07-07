@@ -25,7 +25,7 @@ class ResetPasswordController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/admin-login'; //'/auth/passwords/reset';
+    protected $redirectTo = 'auth/login'; //'/auth/passwords/reset';
 
     /**
      * Create a new controller instance.
@@ -35,5 +35,18 @@ class ResetPasswordController extends Controller
     public function __construct()
     {
         $this->middleware('guest');
+    }
+
+    /**
+     * Get the response for a successful password reset link.
+     *
+     * @param  string  $response
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    protected function sendResetLinkResponse($response)
+    {
+        // return back()->with('status', trans($response));
+        return redirect('/login')->with('status', trans($response));
+        // return "email sent";
     }
 }
