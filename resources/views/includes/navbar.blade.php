@@ -63,9 +63,3 @@ if(Session::get('category') !== null) {
 		</div><!--/.nav-collapse -->
 	</div>
 </nav>
-
-
-
-<header>
-	<a href="/"><h1><?php// echo $title; ?></h1></a>
-</header>

@@ -3,7 +3,9 @@
 @section('content')
 	<main class="wrapper" id="homePage">
 		<div class="container">
-			<p>Test your knowledge on 8 different Web Development Programming languages.
+			{{-- <p>Test your knowledge on 8 different Web Development Programming languages.</p> --}}
+			<p>Test your knowledge on Web Development.</p>
+			<p>
 		        <span>&darr;</span>
 		        Click below
 		        <span>&darr;</span>
