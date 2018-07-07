@@ -8841,6 +8841,28 @@ template {
   display: none;
 }
 
+@-webkit-keyframes hide {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+    display: none;
+  }
+}
+
+@keyframes hide {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+    display: none;
+  }
+}
+
 /*
  * Global Styles
 */
@@ -8854,7 +8876,7 @@ html {
 body {
   width: 100vw;
   max-width: 95%;
-  margin: 0;
+  margin: 0 auto;
   padding: 0;
   font-size: 1.8rem;
   font-family: "Merriweather", Helvetica, sans-serif;
@@ -8979,8 +9001,6 @@ main#adminPage button[name='next'] {
   display: inline-block;
   border: 1px solid #000;
   border-radius: 5px;
-  color: #032;
-  background-color: #eee;
   padding: 10px;
   font-size: 1em;
   text-decoration: none;
@@ -8988,6 +9008,11 @@ main#adminPage button[name='next'] {
 
 #app {
   margin-top: 100px;
+}
+
+.alert.logged-in {
+  -webkit-animation: 3s hide forwards;
+          animation: 3s hide forwards;
 }
 
 /*
@@ -9033,24 +9058,12 @@ main.wrapper > .container {
   }
 }
 
-main.wrapper > .container > p:nth-of-type(1) {
-  width: 90%;
-  margin: 0 auto 20px;
-}
-
-@media (min-width: 768px) {
-  main.wrapper > .container > p:nth-of-type(1) {
-    width: 70%;
-    margin: 0 auto 40px;
-  }
+main.wrapper > .container > p {
+  text-align: center;
 }
 
 main.wrapper > .container > p > span {
   color: #f00;
-}
-
-main.wrapper > .container > p:nth-of-type(2) {
-  text-align: center;
 }
 
 main.wrapper > .container > p:nth-of-type(2) > a {
@@ -9065,7 +9078,6 @@ main.wrapper > .container > p:nth-of-type(2) > a {
 }
 
 main.wrapper > .container > p:nth-of-type(3) {
-  text-align: center;
   margin-top: 5px;
 }
 
@@ -9545,8 +9557,14 @@ main#adminSignup > p span > a:hover {
  * Admin Page
 */
 
+main#adminPage h1 {
+  width: 80%;
+  margin: 0 auto;
+  font-size: 1.6em;
+}
+
 main#adminPage > p:first-of-type {
-  width: 75%;
+  width: 70%;
   text-align: right;
   margin: 50px auto 10px;
 }
@@ -9575,6 +9593,10 @@ main#adminPage div.question_box > p.edit-question {
   right: 0;
 }
 
+main#adminPage div.question_box > p:last-of-type {
+  margin: 2em 0;
+}
+
 main#adminPage form {
   width: 80%;
   text-align: center;
@@ -9595,52 +9617,77 @@ main#adminPage .no-user-questions {
   margin: 120px auto 0;
 }
 
+main#adminPage .container {
+  text-align: center;
+  margin-bottom: 50px;
+  font-size: .5em;
+}
+
+@media (min-width: 568px) {
+  main#adminPage .container {
+    font-size: .7em;
+  }
+}
+
+@media (min-width: 768px) {
+  main#adminPage .container {
+    font-size: 1em;
+  }
+}
+
 /*
  * Add Question Page
 */
 
-main.addPage {
+main.addPage,
+main.editPage {
   height: 100vh;
-  width: 80%;
-  max-width: 1000px;
   margin: 0 auto;
 }
 
 @media (min-width: 768px) {
-  main.addPage {
+  main.addPage,
+  main.editPage {
     height: 75vh;
   }
 }
 
-main.addPage h2 {
+main.addPage h2,
+main.editPage h2 {
   color: #014348;
-  margin-bottom: 0;
+  margin-bottom: 30px;
 }
 
-main.addPage .message {
+main.addPage .message,
+main.editPage .message {
   color: #d14348;
 }
 
-main.addPage form {
+main.addPage form,
+main.editPage form {
   width: 100%;
   height: 100%;
   max-height: 800px;
   margin: 0 auto;
 }
 
-main.addPage form p.hidden {
+main.addPage form p.hidden,
+main.editPage form p.hidden {
   display: none;
 }
 
-main.addPage form > p {
+main.addPage form > p,
+main.editPage form > p {
   margin-top: 20px;
 }
 
-main.addPage form > p:last-of-type {
+main.addPage form > p:last-of-type,
+main.editPage form > p:last-of-type {
   margin-bottom: 50px;
 }
 
-main.addPage form label {
+main.addPage form label,
+main.editPage form label {
   display: block;
   margin-bottom: 10px;
   font-family: "Gloria Hallelujah", cursive;
@@ -9649,14 +9696,17 @@ main.addPage form label {
 }
 
 @media (min-width: 768px) {
-  main.addPage form label {
+  main.addPage form label,
+  main.editPage form label {
     display: inline-block;
     font-size: 18px;
   }
 }
 
 main.addPage form input[type="text"],
-main.addPage form input[type="number"] {
+main.addPage form input[type="number"],
+main.editPage form input[type="text"],
+main.editPage form input[type="number"] {
   float: none;
   border: outset 1px #000;
   border-radius: 5px;
@@ -9667,63 +9717,81 @@ main.addPage form input[type="number"] {
 main.addPage form input[type="text"]:before,
 main.addPage form input[type="text"]:after,
 main.addPage form input[type="number"]:before,
-main.addPage form input[type="number"]:after {
+main.addPage form input[type="number"]:after,
+main.editPage form input[type="text"]:before,
+main.editPage form input[type="text"]:after,
+main.editPage form input[type="number"]:before,
+main.editPage form input[type="number"]:after {
   content: '';
   display: table;
 }
 
 main.addPage form input[type="text"]:after,
-main.addPage form input[type="number"]:after {
+main.addPage form input[type="number"]:after,
+main.editPage form input[type="text"]:after,
+main.editPage form input[type="number"]:after {
   clear: both;
 }
 
 @media (min-width: 768px) {
   main.addPage form input[type="text"],
-  main.addPage form input[type="number"] {
+  main.addPage form input[type="number"],
+  main.editPage form input[type="text"],
+  main.editPage form input[type="number"] {
     line-height: 1.5em;
     float: right;
   }
 }
 
-main.addPage form input[type="text"] {
+main.addPage form input[type="text"],
+main.editPage form input[type="text"] {
   width: 100%;
 }
 
 @media (min-width: 768px) {
-  main.addPage form input[type="text"] {
+  main.addPage form input[type="text"],
+  main.editPage form input[type="text"] {
     width: 50%;
   }
 }
 
-main.addPage form input[type="number"] {
+main.addPage form input[type="number"],
+main.editPage form input[type="number"] {
   width: 30%;
 }
 
-main.addPage form input[name="submit"] {
+main.addPage form input[name="submit"],
+main.editPage form input[name="submit"] {
   background-color: #6d73c2;
   color: #eee8d6;
   float: none;
 }
 
 @media (min-width: 768px) {
-  main.addPage form input[name="submit"] {
+  main.addPage form input[name="submit"],
+  main.editPage form input[name="submit"] {
     float: right;
   }
 }
 
-main.addPage form input[name="cancel"] {
+main.addPage form a.back-button,
+main.editPage form a.back-button {
+  display: inline-block;
   background-color: #d14348;
   color: #ffba00;
 }
 
 @media (min-width: 768px) {
-  main.addPage form input[name="cancel"] {
+  main.addPage form a.back-button,
+  main.editPage form a.back-button {
     float: left;
   }
 }
 
 main.addPage form input[name="submit"],
-main.addPage form input[name="cancel"] {
+main.addPage form a.back-button,
+main.editPage form input[name="submit"],
+main.editPage form a.back-button {
   width: 42.5%;
   max-width: 250px;
   padding: 10px 25px;
@@ -9734,21 +9802,27 @@ main.addPage form input[name="cancel"] {
 
 @media (min-width: 1000px) {
   main.addPage form input[name="submit"],
-  main.addPage form input[name="cancel"] {
+  main.addPage form a.back-button,
+  main.editPage form input[name="submit"],
+  main.editPage form a.back-button {
     font-size: 1.2em;
     padding: 15px 32px;
   }
 }
 
 main.addPage form input[name="submit"]:hover,
-main.addPage form input[name="cancel"]:hover {
+main.addPage form a.back-button:hover,
+main.editPage form input[name="submit"]:hover,
+main.editPage form a.back-button:hover {
   opacity: .8;
   font-size: 1.2em;
 }
 
 @media (min-width: 1000px) {
   main.addPage form input[name="submit"]:hover,
-  main.addPage form input[name="cancel"]:hover {
+  main.addPage form a.back-button:hover,
+  main.editPage form input[name="submit"]:hover,
+  main.editPage form a.back-button:hover {
     font-size: 1.4em;
   }
 }

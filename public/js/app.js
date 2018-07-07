@@ -849,6 +849,13 @@ document.addEventListener('DOMContentLoaded', function () {
 		});
 	}
 
+	$('.alert.logged-in').bind('animationend webkitAnimationEnd oAnimationEnd MSAnimationEnd', function (e) {
+		$(this).remove();
+	});
+
+	// document.querySelector('.alert').
+	// $('.alert').fadeOut(2000);
+
 	// if(document.querySelector('a#login-switch')) {
 	// 	document.querySelector('a#login-switch').addEventListener('click', function(e) {
 	// 		e.preventDefault();
