@@ -2,6 +2,11 @@
 	margin-top: 100px;
 }
 
+.alert.logged-in {
+	animation: 3s hide forwards;
+	// transition: opacity 3s;
+}
+
 /*
  * Main Content Styles
 */
@@ -39,13 +44,18 @@ main.wrapper {
 			float: left;
 		}
 
+		> p {
+			text-align: center;
+		}
+
 		> p:nth-of-type(1) {
-			width: 90%;
-			margin: 0 auto 20px;
+			// width: 90%;
+			// margin: 0 auto 5px;
+			// text-align: center;
 
 			@include break(768px) {
-				width: 70%;
-				margin: 0 auto 40px;
+				// width: 70%;
+				// margin: 0 auto 40px;
 			}
 		}
 
@@ -54,7 +64,7 @@ main.wrapper {
 		}
 
 		> p:nth-of-type(2) {
-			text-align: center;
+			// text-align: center;
 
 			> a {
 				background: $red;
@@ -69,7 +79,7 @@ main.wrapper {
 		}
 
 		> p:nth-of-type(3) {
-			text-align: center;
+			// text-align: center;
 			margin-top: 5px;
 //			-webkit-transform: scale(1.0);
 //
@@ -596,8 +606,15 @@ main#adminSignup {
 main#adminPage {
 //	height: 70vh;
 
+	h1 {
+		// margin-left: 100px;
+		width: 80%;
+		margin: 0 auto;
+		font-size: 1.6em;
+	}
+
 	> p:first-of-type {
-		width: 75%;
+		width: 70%;
 		text-align: right;
 		margin: 50px auto 10px;
 //		padding: 7px 3%;
@@ -625,6 +642,10 @@ main#adminPage {
 			top: 0;
 			right: 0;
 		}
+
+		> p:last-of-type {
+			margin: 2em 0;
+		}
 	}
 
 	form {
@@ -647,6 +668,20 @@ main#adminPage {
 		width: 70%;
 		height: 70vh;
 		margin: 120px auto 0;
+	}
+
+	.container {
+		text-align: center;
+		margin-bottom: 50px;
+		font-size: .5em;
+
+		@include break(568px) {
+			font-size: .7em;
+		}
+
+		@include break(768px) {
+			font-size: 1em;
+		}
 	}
 
 //	h3 {
@@ -675,10 +710,11 @@ main#adminPage {
 /*
  * Add Question Page
 */
-main.addPage {
+main.addPage,
+main.editPage {
 	height: 100vh;
-	width: 80%;
-	max-width: 1000px;
+	// width: 80%;
+	// max-width: 1000px;
 	margin: 0 auto;
 
 	@include break(768px) {
@@ -687,7 +723,7 @@ main.addPage {
 
 	h2 {
 		color: $darkgreen;
-		margin-bottom: 0;
+		margin-bottom: 30px;
 	}
 
 	.message {
@@ -769,7 +805,8 @@ main.addPage {
 			}
 		}
 
-		input[name="cancel"] {
+		a.back-button {
+			display: inline-block;
 			background-color: $red;
 			color: $yellow;
 
@@ -779,7 +816,7 @@ main.addPage {
 		}
 
 		input[name="submit"],
-		input[name="cancel"] {
+		a.back-button {
 				width: ((100% - ((2 - 1) * 15)) / 2);
 				max-width: 250px;
 				padding: 10px 25px;
