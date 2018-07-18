@@ -38,21 +38,6 @@ document.addEventListener('DOMContentLoaded',function() {
 			if(this.readyState === 4 && this.status === 200) {
 
 				func(this);
-
-				// var divisor = Math.floor(this.responseText / 5);
-				//
-				// if(divisor !== 0) {
-				// 	for(var i = 0; i <= divisor; i++) {
-				//
-				// 		if(i === 0) {
-				// 			document.getElementById('number_of_questions').innerHTML = '<option value="none" selected disabled>' + i * 5 + '</option>';
-				// 		} else {
-				// 			document.getElementById('number_of_questions').innerHTML += '<option value="' + i * 5 + '">' + i * 5 + '</option>';
-				// 		}
-				// 	}
-				// } else {
-				// 	document.getElementById('number_of_questions').innerHTML += '<option value="' + this.responseText + '">' + this.responseText + '</option>';
-				// }
 				return this.responseText;
 			}
 		}
@@ -80,6 +65,18 @@ document.addEventListener('DOMContentLoaded',function() {
 		document.querySelector('#app').innerHTML = that.responseText;
 	}
 
+
+	/*
+	 * ================================================
+	 * Start of App Logic
+	 * ================================================
+	*/
+
+
+	/*
+	 * Quiz Choice View Logic
+	 * 
+	*/
 	if(document.querySelector('select[name="category"]')) {
 		document.querySelector('select[name="category"]').addEventListener('change', function() {
 		    var question_category = this.value;
@@ -91,6 +88,7 @@ document.addEventListener('DOMContentLoaded',function() {
 		document.querySelector('select[name="number_of_questions"]').addEventListener('change', function() {
 			var totalTestTime = this.value;
 			document.getElementById('time').innerText = (totalTestTime/2) + " Minutes";
+			document.querySelector('.start').removeAttribute('disabled');
 		});
 	}
 

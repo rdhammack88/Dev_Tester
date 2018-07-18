@@ -613,15 +613,42 @@ main#adminPage {
 		font-size: 1.6em;
 	}
 
-	> p:first-of-type {
-		width: 70%;
-		text-align: right;
-		margin: 50px auto 10px;
+	> .row {
+		// margin: 50px auto 50px 45px;
+		margin: 50px auto 0;
+
+		.col-md-4 {
+			max-width: 450px;
+			margin: 0 auto;
+		}
+
+		.panel {
+			height: 170px;
+			text-align: center;
+
+			.panel-body {
+				line-height: 1.8em;
+			}
+		}
+	}
+
+	// > p:first-of-type {
+	p.add-btn-container {
+		// width: 70%;
+		// text-align: right;
+		// margin-top: 170px;
+		// margin: 50px auto 10px;
 //		padding: 7px 3%;
+		text-align: center;
+
+		@include break(768px) {
+			margin-left: -25px;
+			text-align: left;
+		}
 	}
 
 	div.question_box {
-		width: 70%;
+		width: 75%;
 		border: 1px dotted #000;
 		border-radius: 5px;
 		margin: 4% auto;
@@ -634,7 +661,8 @@ main#adminPage {
 		}
 
 		> p.edit-question {
-			width: 20%;
+			width: 25%;
+			font-size: 1.4em;
 			display: inline-block;
 			text-align: right;
 			margin: 0 10px;
@@ -664,10 +692,12 @@ main#adminPage {
 		@extend %adminPageButtons;
 	}
 
-	.no-user-questions {
+	.no-user-questions,
+	.no-user-privilege {
 		width: 70%;
-		height: 70vh;
+		// height: 70vh;
 		margin: 120px auto 0;
+		text-align: center;
 	}
 
 	.container {
