@@ -133,9 +133,13 @@ class QuestionsController extends Controller
     }
 
     /**
-     *
-     *
-     *
+     * Return Question Models show question method.
+     * Set Session Category.
+     * Validate test choices, redirect if forced without set
+     * @param $cat, $num, $request
+     * - $cat === Test Select Category
+     * - $num === Number of questions test taker has chosen to take
+     * - $request === 
      */
     public function showQuestion($cat, $num, Request $request) {
         //
@@ -172,29 +176,42 @@ class QuestionsController extends Controller
     }
 
     /**
-     *
-     *
-     *
+     * Set Session Variables for:
+     * - questions taken by user
+     * - users answers
+     * - correct answers to questions taken
+     * Return Question Model quizComplete method
      */
-     public function quizComplete() {
-         // echo 'Completed Quiz';
-         return view('pages/quizFinal');
-     }
+    public function quizComplete() {
+        // echo 'Completed Quiz';
+        $test_qeustions         = Session::get('question.previous_questions');
+        // session('question.previous_questions')
+        $test_correct_answers   = Session::get('question.correct_answers');
+        // session('question.correct_answers')
+        $test_user_answers      = Session::get('question.user_answers');
+        // session('question.user_answers')
+
+        return Question::quizComplete($test_qeustions, $test_correct_answers, $test_user_answers);
+
+        // return view('pages/quizFinal');
+    }
 
     /**
-     *
-     *
-     *
-     */
-     public function confirmChoice() {
-         // Session::push('user_answers', $_POST['choice']);
-     }
+    *
+    * TEST METHOD
+    * - NOT BEING USED
+    *
+    */
+    public function confirmChoice() {
+        // Session::push('user_answers', $_POST['choice']);
+    }
 
-     /**
-      *
-      *
-      *
-      */
+    /**
+    *
+    * TEST METHOD
+    * - NOT BEING USED
+    *
+    */
     public function returnTest($category, $number) {
 
         if(isset($_POST['category']) && $_POST['category'] !== 'none') {
