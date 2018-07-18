@@ -110,13 +110,26 @@ class Question extends Model
      */
     public static function quizComplete($test_qeustions, $test_correct_answers, $test_user_answers) {
         $questions = Question::whereIn('id', $test_qeustions)->get();
-        $correct_answers = Answer::whereIn('id', $test_correct_answers)->get();
-        $user_answers = Answer::whereIn('id', $test_user_answers)->get();
+        $question_answers = Answer::whereIn('question_number', $test_qeustions)->get();
+        $correct_answers = array_flatten(Answer::whereIn('id', $test_correct_answers)->get()->toArray());
+        $user_answers = array_flatten(Answer::whereIn('id', $test_user_answers)->get()->toArray());
+
+        // $user_answers.toArray();
+        // return gettype($user_answers); die();
+
+        $user_correct_answers = array_intersect($test_user_answers, $test_correct_answers);
+        $user_score = floor((100 / count($test_correct_answers)) * count($user_correct_answers));
+
+        $msg = $user_score >= 70 ? 'Pass' : 'Fail';
 
         return view('pages/quizFinal')->
             with('questions', $questions)->
+            with('question_answers', $question_answers)->
             with('correct_answers', $correct_answers)->
-            with('user_answers', $user_answers);
+            with('user_answers', $user_answers)->
+            with('user_correct_answers', $user_correct_answers)->
+            with('user_score', $user_score)->
+            with('msg', $msg);
     }
 
     /*
