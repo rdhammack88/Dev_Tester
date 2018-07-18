@@ -50,7 +50,7 @@
         		<label for="time">Estimated Time:</label>
         		<span id="time"></span>
         		<br/><br/><br/>
-        		<button type="submit" name="start" class="start">Start Quiz</button>
+        		<button type="submit" name="start" class="start" disabled="true">Start Quiz</button>
 
                 <p id="data"></p>
 
