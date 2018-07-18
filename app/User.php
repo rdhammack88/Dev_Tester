@@ -28,4 +28,12 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    /*
+     * Return total count of signed up users
+     */
+    public function getTotalUsers() {
+        $count = $this::all()->count();
+        return $count;
+    }
 }

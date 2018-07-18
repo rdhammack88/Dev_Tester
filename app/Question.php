@@ -101,7 +101,29 @@ class Question extends Model
         // return redirect("/question/". $question_info['question']['question_category']."/1");
     }
 
+    /*
+     * Return Final Page to current test taker
+     * @params session arrays
+     * - $test_qeustions === Questions test taker answered
+     * - $test_correct_answers === The answers that matched the questions that were answered
+     * - $user_answers === The user entered answers
+     */
+    public static function quizComplete($test_qeustions, $test_correct_answers, $test_user_answers) {
+        $questions = Question::whereIn('id', $test_qeustions)->get();
+        $correct_answers = Answer::whereIn('id', $test_correct_answers)->get();
+        $user_answers = Answer::whereIn('id', $test_user_answers)->get();
 
+        return view('pages/quizFinal')->
+            with('questions', $questions)->
+            with('correct_answers', $correct_answers)->
+            with('user_answers', $user_answers);
+    }
+
+    /*
+     * If current Admin User has any questions submitted,
+     * pull the questions from the db and display to Admin User.
+     * If no questions posted by current Admin, display appropriately.
+     */
     public function getAllQuestions($user_id) {
         $questions = Question::where('added_by', '=', $user_id)->paginate(10);
 
@@ -112,6 +134,10 @@ class Question extends Model
         }
     }
 
+    /*
+     * Add question to DB for current Admin User
+     * @params $request === $_POST variables
+     */
     public function addQuestion($request) {
         $user_id = auth()->user()->id;
         $question = new Question;
@@ -160,6 +186,10 @@ class Question extends Model
         return redirect('/admin/dashboard');
     }
 
+    /*
+     * Return the question info to edit for current Admin User
+     * @param integer $id === db id column for questions table
+     */
     public function editQuestion($id) {
         $question = new Question;
         $result = $question->find($id);//where('id', '=', $id)->get();
@@ -169,6 +199,12 @@ class Question extends Model
         // $question_info['question_id'] = '';
     }
 
+    /*
+     * Return the new question info to update for current Admin User
+     * @params $request && $id
+     * - $request === $_POST variables
+     * - integer $id === db id column for questions table 
+     */
     public function updateQuestion($request, $id) {
         $question = Question::find($id);
         $answer = Answer::where('question_number', '=', $id);
@@ -191,5 +227,6 @@ class Question extends Model
         // return $question;
         return redirect('/admin/dashboard');
     }
+
 
 }
