@@ -25,7 +25,9 @@ class QuizChoice extends Model
         // return $choices;
 
         // return QuizChoice::select('question_category')->get()
-        return QuizChoice::all()->pluck('question_category')->unique();
+        return QuizChoice::orderBy('question_category')->pluck('question_category')->unique();
+        //all(); 
+        //->pluck('question_category')->unique();
     }
 
     // public function showQuestion()
