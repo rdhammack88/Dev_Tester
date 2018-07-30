@@ -864,6 +864,23 @@ document.addEventListener('DOMContentLoaded', function () {
 	// 		getInfo('get', '/ajax/admin/login', true, displayContent);
 	// 	});
 	// }
+
+	if (document.querySelector('#submitAnswer')) {
+		var choices = document.querySelectorAll('input[name="choice"]');
+
+		choices.forEach(function (choice) {
+			choice.addEventListener('click', function () {
+				document.getElementById('submitAnswer').removeAttribute('disabled');
+				// console.log('it Checked the vanilla js way');
+			});
+			// console.log(choice);
+		});
+
+		// $('body').on('click', 'input[name="choice"]', (e) => {
+		// 	// $('input[type="submit"]').removeAttr('disabled');
+		// 	// console.log('it Checked the jQuery way');
+		// });
+	}
 });
 
 /***/ }),
