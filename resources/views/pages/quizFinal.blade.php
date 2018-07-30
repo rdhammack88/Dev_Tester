@@ -46,7 +46,7 @@
                             @if ($question_answer['question_number'] === $question['id'])
                                 @if (in_array($question_answer['id'], $correct_answers))
                                     <li class="correct">{{ $question_answer['answers'] }}</li>
-                                @elseif (in_array($question_answer['id'], $user_answers) && !in_array($question_answer['id'], $correct_answers))
+                                @elseif (in_array($question_answer['id'], $user_answers) && !in_array($question_answer['id'], $user_correct_answers))
                                     <li class="wrong">{{ $question_answer['answers'] }}</li>
                                 @else 
                                     <li>{{ $question_answer['answers'] }}</li>
@@ -59,7 +59,8 @@
                 @endforeach
 
             </ol>
-        </div>  
+        </div> 
+        <a href="/quiz-choice" class="retake">Take Quiz Again</a>
     </div>
 </main>
 

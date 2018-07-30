@@ -35,6 +35,20 @@ class Question extends Model
     public static function showQuestion($category, $number_of_questions, $num) {
         // echo 'Working in Question Model and Controller with param ' . $category;
 
+        if(isset($_POST['choice'])) {
+            $question_info['recent_choice'] = $_POST['choice'];
+            Session::push('question.user_answers', $_POST['choice']);
+            // if($_Post)
+        } else {
+            $question_info['recent_choice'] = '';
+        }
+
+        if(isset($_POST['submitQuiz'])) {
+            // return redirect('/quizFinal');
+            // return $this->quizComplete();
+            return redirect('/quizFinal');
+        }
+
 
         $question = new Question;
         $answers = new Answer;
@@ -85,13 +99,13 @@ class Question extends Model
                                             // ])->pluck('id');
         // where('is_correct', 1)->where('question_number', $question_info['question']['id'])->first();
 
-        if(isset($_POST['choice'])) {
-            $question_info['recent_choice'] = $_POST['choice'];
-            Session::push('question.user_answers', $_POST['choice']);
-            // if($_Post)
-        } else {
-            $question_info['recent_choice'] = '';
-        }
+        // if(isset($_POST['choice'])) {
+        //     $question_info['recent_choice'] = $_POST['choice'];
+        //     Session::push('question.user_answers', $_POST['choice']);
+        //     // if($_Post)
+        // } else {
+        //     $question_info['recent_choice'] = '';
+        // }
 
         Session::push('question.previous_questions', $question_info['question']['id']);
         Session::push('question.correct_answers', $question_info['correct_answer'][0]);
@@ -127,6 +141,19 @@ class Question extends Model
         $user_score = floor((100 / count($test_correct_answers)) * count($user_correct_answers));
 
         $msg = $user_score >= 70 ? 'Pass' : 'Fail';
+
+        // Set final results message
+        // if($user_score === 100) {
+        //     $msg = "Flawless Victory!";
+        // } elseif($user_score < 100 && $user_score >= 70) {
+        //     $msg = "Great job! Looks like you've been practicing.";
+        // } elseif($user_score >= 60 && $total == 5) {
+        //     $msg = "Great job! Looks like you've been practicing.";
+        // } elseif($score  < 70 && $_SESSION['score'] > 0) {
+        //     $msg = "Looks like you need some more practice...";
+        // } else {
+        //     $msg = "Well, {$_SESSION['category']} is not for everyone...";
+        // }
 
         return view('pages/quizFinal')->
             with('questions', $questions)->

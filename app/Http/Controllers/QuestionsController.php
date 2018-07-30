@@ -148,10 +148,10 @@ class QuestionsController extends Controller
             return redirect('/quiz-choice');
         }
 
-        if(isset($_POST['submitQuiz'])) {
-            // return redirect('/quizFinal');
-            return $this->quizComplete();
-        }
+        // if(isset($_POST['submitQuiz'])) {
+        //     // return redirect('/quizFinal');
+        //     return $this->quizComplete();
+        // }
 
         // $num++;
         if(isset($_POST['category']) && $_POST['category'] !== 'none' && isset($_POST['number_of_questions'])) {
