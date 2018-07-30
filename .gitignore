@@ -12,3 +12,4 @@ yarn-error.log
 .env
 package-lock.json
 resources/views/pages/quizFinal1.blade.php
+resources/views/pages/questionTest.blade.php
