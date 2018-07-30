@@ -45,13 +45,19 @@ class Question extends Model
         //     $question_info['recent_choice'] = $_POST['choice'];
         // }
 
+        if($num === '1') {
+            // Session::flush();
+            Session::forget('question.previous_questions');
+            Session::forget('question.correct_answers');
+        }
 
-        if(Session::get('question.previous_questions')) {
+        if(Session::get('question.previous_questions') && $num != 1) {
             $question_info['recent_questions'] = Session::get('question.previous_questions');
         } else {
             $question_info['recent_questions'] = array();
         }
 
+        // Session::put('question.question_number', $num);
 
         // $question_info['question_number']   = isset($question_info['question_number']) ? $question_info['question_number']++ : 1;
         $question_info['question_number']   = $num;
