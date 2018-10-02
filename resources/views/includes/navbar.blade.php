@@ -38,7 +38,7 @@ if(Session::get('category') !== null) {
 			<div id="navbar" class="collapse navbar-collapse">
 				<ul class="nav navbar-nav">
 					<li class="{{Request::is('/') ? 'active' : ''}}"><a href="/">Home</a></li>
-					<li class="{{Request::is('/about') ? 'active' : ''}}"><a href="/about">About</a>
+					<li class="{{Request::is('about') ? 'active' : ''}}"><a href="/about">About</a>
 					</li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
@@ -47,7 +47,7 @@ if(Session::get('category') !== null) {
 					<li><a href="{{ route('login') }}">Login</a></li>
 					<li><a href="{{ route('register') }}">Register</a></li>
 					@else
-					<li class="{{Request::is('/dashboard') ? 'active' : ''}}"><a href="/admin/dashboard">Dashboard</a></li>
+					<li class="{{Request::is('admin/dashboard') ? 'active' : ''}}"><a href="/admin/dashboard">Dashboard</a></li>
 					<li>
 						<a href="{{ route('logout') }}" onclick="event.preventDefault();
                                         document.getElementById('logout-form').submit();">
