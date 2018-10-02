@@ -28,10 +28,12 @@ class Dashboard extends Model
         $total_users     = $user->getTotalUsers();
         // $user_questions = Question::find($id);
         $questions = $question->getAllQuestions($id);
+        $total_user_questions = $question->getTotalUserQuestions($id);
         $answers   = $answer->userQuestionCount($id);
 
         return view('/pages/admin/dashboard')->
             with('questions', $questions)->
+            with('total_user_questions', $total_user_questions)->
             with('answers', $answers)->
             with('total_users', $total_users);
     }

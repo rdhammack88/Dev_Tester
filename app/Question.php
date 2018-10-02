@@ -181,6 +181,20 @@ class Question extends Model
     }
 
     /*
+     * If current Admin User has any questions submitted,
+     * pull the questions from the db and display to Admin User in Number of Questions Panel.
+     * If no questions posted by current Admin, display appropriately.
+     */
+    public function getTotalUserQuestions($user_id) {
+        $total_user_questions = Question::where('added_by', '=', $user_id)->get();
+        if($total_user_questions) {
+            return $total_user_questions;
+        } else {
+            return 'You do not have any questions';
+        }
+    }
+
+    /*
      * Add question to DB for current Admin User
      * @params $request === $_POST variables
      */
